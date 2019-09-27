@@ -22,6 +22,13 @@ export default class CCFieldValidator {
     const maxCVCLength = (numberValidation.card || FALLBACK_CARD).code.size;
     const cvcValidation = valid.cvv(formValues.cvc, maxCVCLength);
 
+    // this is the credit card that paylike is using as a valid test card,
+    // but luhn-10 (the algorithm used for validating credit cards) does not validate
+    // this credit card number
+    if (formValues.number === "4100 0000 0000 0000") {
+      numberValidation.isValid = true;
+    }
+
     const validationStatuses = pick({
       number: toStatus(numberValidation),
       expiry: toStatus(expiryValidation),
