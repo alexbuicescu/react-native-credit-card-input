@@ -36,6 +36,7 @@ export default class CCInput extends Component {
     onChange: PropTypes.func,
     onBecomeEmpty: PropTypes.func,
     onBecomeValid: PropTypes.func,
+    additionalTouchableProps: PropTypes.shape(TextInput.propTypes),
     additionalInputProps: PropTypes.shape(TextInput.propTypes),
   };
 
@@ -50,6 +51,7 @@ export default class CCInput extends Component {
     onChange: () => {},
     onBecomeEmpty: () => {},
     onBecomeValid: () => {},
+    additionalTouchableProps: {},
     additionalInputProps: {},
   };
 
@@ -70,9 +72,11 @@ export default class CCInput extends Component {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
             validColor, invalidColor, placeholderColor,
-            additionalInputProps } = this.props;
+            additionalTouchableProps, additionalInputProps } = this.props;
     return (
-      <TouchableOpacity onPress={this.focus}
+      <TouchableOpacity
+        {...additionalTouchableProps}
+        onPress={this.focus}
         activeOpacity={0.99}>
         <View style={[containerStyle]}>
           { !!label && <Text style={[labelStyle]}>{label}</Text>}

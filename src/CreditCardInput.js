@@ -7,6 +7,7 @@ import ReactNative, {
   StyleSheet,
   ScrollView,
   Dimensions,
+  Touchable,
   TextInput,
   ViewPropTypes,
 } from "react-native";
@@ -64,6 +65,7 @@ export default class CreditCardInput extends Component {
 
     allowScroll: PropTypes.bool,
 
+    additionalTouchablesProps: PropTypes.objectOf(PropTypes.shape(Touchable.propTypes)),
     additionalInputsProps: PropTypes.objectOf(PropTypes.shape(TextInput.propTypes)),
   };
 
@@ -91,6 +93,7 @@ export default class CreditCardInput extends Component {
     invalidColor: "red",
     placeholderColor: "gray",
     allowScroll: false,
+    additionalTouchablesProps: {},
     additionalInputsProps: {},
   };
 
@@ -119,7 +122,7 @@ export default class CreditCardInput extends Component {
       inputStyle, labelStyle, validColor, invalidColor, placeholderColor,
       placeholders, labels, values, status,
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
-      additionalInputsProps,
+      additionalTouchablesProps, additionalInputsProps,
     } = this.props;
 
     return {
@@ -135,6 +138,7 @@ export default class CreditCardInput extends Component {
 
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
 
+      additionalTouchableProps: additionalTouchablesProps[field],
       additionalInputProps: additionalInputsProps[field],
     };
   };
