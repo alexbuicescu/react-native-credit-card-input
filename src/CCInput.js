@@ -63,7 +63,15 @@ export default class CCInput extends Component {
     if (status !== "valid" && newStatus === "valid") onBecomeValid(field);
   };
 
-  focus = () => this.refs.input.focus();
+  inputOnPress = () => {
+    this.props.onFocus(this.props.field);
+    this.refs.input.focus();
+  }
+
+  // used by CreditCardInput.js
+  rawFocus = () => {
+    this.refs.input.focus();
+  }
 
   _onChange = value => this.props.onChange(this.props.field, value);
 
@@ -75,9 +83,9 @@ export default class CCInput extends Component {
     return (
       <TouchableOpacity
         {...additionalTouchableProps}
-        onPress={this.focus}
+        onPress={this.inputOnPress}
         activeOpacity={0.99}>
-        <View style={[containerStyle]}>
+        <View pointerEvents='none' style={[containerStyle]}>
           { !!label && <Text style={[labelStyle]}>{label}</Text>}
           <TextInput ref="input"
             {...additionalInputProps}

@@ -113,7 +113,7 @@ export default class CreditCardInput extends Component {
       e => { throw e; },
       x => {
         scrollResponder.scrollTo({ x: Math.max(x - PREVIOUS_FIELD_OFFSET, 0), animated: true });
-        this.refs[field].focus();
+        this.refs[field].rawFocus();
       });
   }
 
