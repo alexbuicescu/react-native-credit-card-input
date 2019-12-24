@@ -65,7 +65,6 @@ export default class CCInput extends Component {
 
   focus = () => this.refs.input.focus();
 
-  _onFocus = () => this.props.onFocus(this.props.field);
   _onChange = value => this.props.onChange(this.props.field, value);
 
   render() {
@@ -96,7 +95,6 @@ export default class CCInput extends Component {
             placeholderTextColor={placeholderColor}
             placeholder={placeholder}
             value={value}
-            onFocus={this._onFocus}
             onChangeText={this._onChange} />
         </View>
       </TouchableOpacity>
